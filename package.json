@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/rupindr/pro-signup/issues"
   },
-  "homepage": "https://github.com/rupindr/pro-signup#readme"
+  "homepage": "https://github.com/rupindr/pro-signup#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "mongoose": "^5.7.3"
+  }
 }

@@ -60,5 +60,8 @@ typings/
 # next.js build output
 .next
 
+#demo folder used to test the module
+demo
+
 #configuration file for demo
 demo/config/config.js
