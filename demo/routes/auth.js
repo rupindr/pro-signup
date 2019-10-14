@@ -1,4 +1,5 @@
 const express = require('express');
+const User = require('../models/UserModel');
 
 const router = express.Router();
 
@@ -20,14 +21,34 @@ router.post('/register', (req, res) => {
 
     if (errors.length > 0) {
         res.send({
-            errors,
-            name,
-            email
+            errors
         });
     }
     else {
         //save user
-        res.send({status: 'ok'});
+        User.findOne({ email: email })
+            .then(user => {
+                if (user) {
+                    errors.push({ msg: 'User already exists' });
+                    res.send({
+                        errors
+                    });
+                }
+                else {
+                    const newUser = new User({
+                        name,
+                        email,
+                        password
+                    });
+
+                    newUser.save()
+                        .then(user => {
+                            res.send({ status: 'ok' });
+                        })
+                        .catch(err => console.log(err));
+
+                }
+            });
     }
 });
 
