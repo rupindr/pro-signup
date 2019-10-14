@@ -10,7 +10,7 @@ const port = 5000;
 dbHanlder.connect();
 
 // body parser middleware
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
 
 //routes
 app.use('/auth', require('./routes/auth'));
