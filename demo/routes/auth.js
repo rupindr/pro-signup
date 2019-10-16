@@ -43,13 +43,35 @@ router.post('/register', (req, res) => {
 
                     newUser.save()
                         .then(user => {
-                            res.send({ status: 'ok' });
+                            res.send({ status: true });
                         })
                         .catch(err => console.log(err));
 
                 }
             });
     }
+});
+
+router.post('/login', (req, res) => {
+    let { email, password = '' } = req.body;
+
+    User.findOne({ email: email })
+        .then(user => {
+            if (!user) {
+                res.send({ errors: [{ msg: 'user does not exist!' }] });
+            }
+            else if (user) {
+                let validPass = user.comparePassword(password);
+                if (!validPass) {
+                    res.json({ status: false, errors: [{ msg: 'wrong password!' }] });
+                }
+                else if (validPass) {
+                    // create jwt and set cookie
+                    res.json({ status: true });
+                }
+            }
+        })
+        .catch(err => console.log(err));
 });
 
 module.exports = router;
