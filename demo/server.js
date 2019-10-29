@@ -1,6 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const dbHanlder = require('./helpers/databaseHandler');
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -8,6 +8,9 @@ const port = 5000;
 
 // connect to db
 dbHanlder.connect();
+
+//cookie parser middleware
+app.use(cookieParser());
 
 // body parser middleware
 app.use(express.urlencoded({ extended: false }));
