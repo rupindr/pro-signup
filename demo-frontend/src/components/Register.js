@@ -15,14 +15,41 @@ export default class Register extends Component {
         })
     }
 
-    onSubmit = () => { return;
+    onSubmit = () => {
+        const getUrlWithParams = (params) => {
+            let query = [];
+            let keys = Object.keys(params);
+            for (let i = 0; i < keys.length; i++) {
+              if (params[keys[i]]) {
+                query.push((encodeURIComponent(keys[i]) + '=' + encodeURIComponent(params[keys[i]])));
+              }
+            }
+            query = query.join('&');
+            return query;
+          }
         let { name, email, password, password2 } = this.state;
-        fetch('http://localhost:5000/auth/register', {
-
+        fetch('/auth/register', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+            },
+            body: getUrlWithParams({
+                name, email, password, password2
+            })
         })
+            .then(res => res.json())
+            .then(response => {
+                if(response.redirect){
+                    window.location.href = response.redirect;
+                }
+                else{
+                    console.log(response.errors);
+                }
+            });
     }
 
-    render(){
+    render() {
 
         let { name, email, password, password2 } = this.state;
 

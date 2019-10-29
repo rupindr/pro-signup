@@ -43,7 +43,7 @@ router.post('/register', (req, res) => {
 
                     newUser.save()
                         .then(user => {
-                            res.send({ status: true });
+                            res.send({ status: true, redirect: '/login' });
                         })
                         .catch(err => console.log(err));
 
@@ -67,7 +67,7 @@ router.post('/login', (req, res) => {
                 }
                 else if (validPass) {
                     // create jwt and set cookie
-                    res.json({ status: true });
+                    res.json({ status: true, redirect: '/' });
                 }
             }
         })

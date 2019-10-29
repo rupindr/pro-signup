@@ -13,7 +13,37 @@ export default class Login extends Component {
     }
 
     onSubmit = () => {
-        console.log(this.state);
+        const getUrlWithParams = (params) => {
+            let query = [];
+            let keys = Object.keys(params);
+            for (let i = 0; i < keys.length; i++) {
+              if (params[keys[i]]) {
+                query.push((encodeURIComponent(keys[i]) + '=' + encodeURIComponent(params[keys[i]])));
+              }
+            }
+            query = query.join('&');
+            return query;
+          }
+        let { email, password } = this.state;
+        fetch('/auth/login', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+            },
+            body: getUrlWithParams({
+                email, password
+            })
+        })
+            .then(res => res.json())
+            .then(response => {
+                if(response.redirect){
+                    window.location.href = response.redirect;
+                }
+                else{
+                    console.log(response.errors);
+                }
+            });
     }
 
     render(){
