@@ -1,4 +1,6 @@
 const express = require('express');
+const jsonwebtoken = require('jsonwebtoken');
+const config = require('../config/config');
 const User = require('../models/UserModel');
 
 const router = express.Router();
@@ -43,7 +45,7 @@ router.post('/register', (req, res) => {
 
                     newUser.save()
                         .then(user => {
-                            res.send({ status: true });
+                            res.send({ status: true, redirect: '/login' });
                         })
                         .catch(err => console.log(err));
 
@@ -66,12 +68,36 @@ router.post('/login', (req, res) => {
                     res.json({ status: false, errors: [{ msg: 'wrong password!' }] });
                 }
                 else if (validPass) {
-                    // create jwt and set cookie
-                    res.json({ status: true });
+                    let token = jsonwebtoken.sign({ email: email }, config.jwtSecret, { expiresIn: config.jwtExpireTime });
+                    res.cookie('checksum', token, { httpOnly: true, maxAge: config.cookieMaxAge });
+                    res.json({ status: true, redirect: '/' });
                 }
             }
         })
         .catch(err => console.log(err));
+});
+
+const ensureAuthenticated = function (req, res, next) {
+    let cookies = req.cookies || {};
+    let checksum = cookies.checksum;
+    jsonwebtoken.verify(checksum, config.jwtSecret, (err, data) => {
+        if (err) {
+            res.send({ redirect: '/login' });
+        }
+        else if (data) {
+            res.locals.user = {
+                email: data.email
+            };
+            return next();
+        }
+        else {
+            res.send({ redirect: '/login' });
+        }
+    });
+}
+
+router.post('/data', ensureAuthenticated, (req, res) => {
+    res.send({ data: 'okay ' + res.locals.user.email });
 });
 
 module.exports = router;
