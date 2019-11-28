@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
     }
 
     if (errors.length > 0) {
-        res.send({
+        res.json({
             errors
         });
     }
@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
             .then(user => {
                 if (user) {
                     errors.push({ msg: 'User already exists' });
-                    res.send({
+                    res.json({
                         errors
                     });
                 }
@@ -45,7 +45,7 @@ router.post('/register', (req, res) => {
 
                     newUser.save()
                         .then(user => {
-                            res.send({ status: true, redirect: '/login' });
+                            res.json({ status: true, redirect: '/login' });
                         })
                         .catch(err => console.log(err));
 
@@ -60,7 +60,7 @@ router.post('/login', (req, res) => {
     User.findOne({ email: email })
         .then(user => {
             if (!user) {
-                res.send({ errors: [{ msg: 'user does not exist!' }] });
+                res.json({ errors: [{ msg: 'user does not exist!' }] });
             }
             else if (user) {
                 let validPass = user.comparePassword(password);
@@ -82,7 +82,7 @@ const ensureAuthenticated = function (req, res, next) {
     let checksum = cookies.checksum;
     jsonwebtoken.verify(checksum, config.jwtSecret, (err, data) => {
         if (err) {
-            res.send({ redirect: '/login' });
+            res.json({ redirect: '/login' });
         }
         else if (data) {
             res.locals.user = {
@@ -91,13 +91,13 @@ const ensureAuthenticated = function (req, res, next) {
             return next();
         }
         else {
-            res.send({ redirect: '/login' });
+            res.json({ redirect: '/login' });
         }
     });
 }
 
 router.post('/data', ensureAuthenticated, (req, res) => {
-    res.send({ data: 'okay ' + res.locals.user.email });
+    res.json({ data: 'okay ' + res.locals.user.email });
 });
 
 module.exports = router;
