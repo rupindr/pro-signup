@@ -5,7 +5,7 @@ export default class Dashboard extends Component {
     state = { data: 'loading...' }
 
     componentDidMount() {
-        fetch('/auth/data', {
+        fetch('/main/data', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {

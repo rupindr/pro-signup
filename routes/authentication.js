@@ -96,8 +96,7 @@ const ensureAuthenticated = function (req, res, next) {
     });
 }
 
-router.post('/data', ensureAuthenticated, (req, res) => {
-    res.json({ data: 'okay ' + res.locals.user.email });
-});
-
-module.exports = router;
+module.exports = {
+    router,
+    ensureAuthenticated
+};

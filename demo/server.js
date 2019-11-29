@@ -1,6 +1,8 @@
 const express = require('express');
 const dbHanlder = require('./helpers/databaseHandler');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+
+const ensureAuthenticated = require('../index').ensureAuthenticated;
 
 const app = express();
 
@@ -16,11 +18,8 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 //routes
-app.use('/auth', require('./routes/auth'));
-
-app.get('/', (req, res) => {
-	res.send('welcome!');
-});
+app.use('/auth', require('../index').router);
+app.use('/main', ensureAuthenticated, require('./routes/main'));
 
 app.listen(port, () => {
 	console.log('server running on port ' + port);
