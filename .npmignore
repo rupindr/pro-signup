@@ -62,6 +62,7 @@ typings/
 
 #demo folder used to test the module
 demo
+demo-frontend
 
 #configuration file for demo
 demo/config/config.js
