@@ -96,7 +96,27 @@ const ensureAuthenticated = function (req, res, next) {
     });
 }
 
+const ensureAuthenticatedAndRedirect = function (req, res, next) {
+    let cookies = req.cookies || {};
+    let checksum = cookies.checksum;
+    jsonwebtoken.verify(checksum, config.jwtSecret, (err, data) => {
+        if (err) {
+            res.redirect('/login');
+        }
+        else if (data) {
+            res.locals.user = {
+                email: data.email
+            };
+            return next();
+        }
+        else {
+            res.redirect('/login');
+        }
+    });
+}
+
 module.exports = {
     router,
-    ensureAuthenticated
+    ensureAuthenticated,
+    ensureAuthenticatedAndRedirect,
 };
