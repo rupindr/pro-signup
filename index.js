@@ -1,9 +1,15 @@
-const router = require('./routes/authentication').router;
-const ensureAuthenticated = require('./routes/authentication').ensureAuthenticated;
-const ensureAuthenticatedAndRedirect = require('./routes/authentication').ensureAuthenticatedAndRedirect;
+const Authentication = require('./routes/authentication');
+const defaultConfig = require('./config/config');
 
-module.exports = {
-    router,
-    ensureAuthenticated,
-    ensureAuthenticatedAndRedirect,
+module.exports = function (configuration) {
+    const config = {
+        ...configuration,
+        ...defaultConfig,
+    };
+
+    if (!config.jwtSecret) {
+        throw new Error('jwtSecret is required in pro-signup configuration');
+    }
+
+    return new Authentication(config);
 }

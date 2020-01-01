@@ -1,6 +1,6 @@
 {
   "name": "pro-signup",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Authentication for express server",
   "main": "index.js",
   "scripts": {
@@ -21,9 +21,7 @@
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
-  },
-  "devDependencies": {
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.13"
   }
 }

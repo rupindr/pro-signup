@@ -1,7 +1,9 @@
 const express = require('express');
 const dbHanlder = require('./helpers/databaseHandler');
 const cookieParser = require('cookie-parser');
-const proSignup = require('../index');
+const proSignup = require('../index')({
+	jwtSecret: 'thisisajwtsecretexample'
+});
 
 const app = express();
 
