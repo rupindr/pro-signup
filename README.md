@@ -18,7 +18,8 @@ Integrate with your express application
 
     app.get('/auth', proSignup.router)
     app.get('/users', proSignup.ensureAuthenticated, function (req, res) {
-        res.send('some private data behind authentication')
+        let email = res.locals.user.email;
+        res.send('some private data for user ' + email);
     })
     app.get('/', function (req, res) {
         res.send('some public data without authentication')
