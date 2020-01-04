@@ -1,6 +1,6 @@
 {
   "name": "pro-signup",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Authentication for express server",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/rupindr/pro-signup.git"
   },
-  "keywords": [],
+  "keywords": ["authentication", "login", "signup", "express"],
   "author": "",
   "license": "ISC",
   "bugs": {

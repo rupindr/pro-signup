@@ -1,4 +1,4 @@
-const Authentication = require('./routes/authentication');
+const Authentication = require('./lib/Authentication');
 const defaultConfig = require('./config/config');
 
 module.exports = function (configuration) {
