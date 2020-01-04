@@ -66,3 +66,6 @@ demo-frontend
 
 #configuration file for demo
 demo/config/config.js
+
+#docs folder
+docs
