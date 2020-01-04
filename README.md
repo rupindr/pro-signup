@@ -7,7 +7,7 @@ Install pro-signup module
     npm install pro-signup --save
 ```  
 Integrate with your express application  
-```
+```javascript
     const express = require('express')
     const proSignup = require('pro-signup')({
         jwtSecret: process.env.jwtSecret
