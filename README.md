@@ -1,3 +1,4 @@
+![ProSignup Logo](https://raw.githubusercontent.com/rupindr/pro-signup/master/docs/logo.png)
 # pro-signup  
   
 Authentication [module](https://www.npmjs.com/package/pro-signup) for [express](https://github.com/expressjs/express)  
@@ -177,3 +178,8 @@ on error
     * /login and /register route pathname
 * stronger password requirements
 * logout functionality
+
+## Links
+NPM: https://www.npmjs.com/package/pro-signup  
+Github Page: https://rupindr.github.io/pro-signup/  
+Project created and maintained by [Rupindr](https://rupindr.com)  
