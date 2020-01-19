@@ -1,4 +1,4 @@
-![ProSignup Logo](https://raw.githubusercontent.com/rupindr/pro-signup/master/docs/logo.png)
+![ProSignup Logo](https://raw.githubusercontent.com/rupindr/pro-signup/master/docs/pro-signup-logo.png)
 # pro-signup  
   
 Authentication [module](https://www.npmjs.com/package/pro-signup) for [express](https://github.com/expressjs/express)  
