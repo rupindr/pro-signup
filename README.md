@@ -180,6 +180,6 @@ on error
 * logout functionality
 
 ## Links
-NPM: https://www.npmjs.com/package/pro-signup  
-Github Page: https://rupindr.github.io/pro-signup/  
+NPM: [https://www.npmjs.com/package/pro-signup](https://www.npmjs.com/package/pro-signup)
+Github Page: [https://rupindr.github.io/pro-signup/](https://rupindr.github.io/pro-signup/)
 Project created and maintained by [Rupindr](https://rupindr.com)  
