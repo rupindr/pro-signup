@@ -10,7 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/rupindr/pro-signup.git"
   },
-  "keywords": ["authentication", "login", "signup", "express", "register"],
+  "keywords": [
+    "authentication",
+    "login",
+    "signup",
+    "express",
+    "register"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

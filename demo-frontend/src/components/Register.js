@@ -28,7 +28,7 @@ export default class Register extends Component {
             return query;
           }
         let { name, email, password, password2 } = this.state;
-        fetch('/auth/register', {
+        fetch('http://localhost:5000/auth/register', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {

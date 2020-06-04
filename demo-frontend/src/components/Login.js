@@ -25,7 +25,7 @@ export default class Login extends Component {
             return query;
           }
         let { email, password } = this.state;
-        fetch('/auth/login', {
+        fetch('http://localhost:5000/auth/login', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {

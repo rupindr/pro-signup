@@ -14,7 +14,7 @@ const connect = (callback) => {
         })
         .catch(err => {
             console.log(err);
-            setTimeout(() => connect(callback), time * 1000);
+            setTimeout(() => connect(callback), time * 10000);
         });
 }
 
