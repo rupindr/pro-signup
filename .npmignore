@@ -69,3 +69,6 @@ demo/config/config.js
 
 #docs folder
 docs
+
+#tests
+test

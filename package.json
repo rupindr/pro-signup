@@ -1,10 +1,10 @@
 {
   "name": "pro-signup",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Authentication for express server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -32,5 +32,11 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.2.1",
+    "mongodb-memory-server": "^6.9.2"
   }
 }
